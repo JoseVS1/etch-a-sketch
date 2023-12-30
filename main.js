@@ -1,9 +1,12 @@
 const container = document.querySelector(".container");
 const gridBtn = document.querySelector(".grid-btn");
+let brightness = 100;
 
 const changeSquareColor = (e) => {
     const currSquare = e.target;
     currSquare.style.backgroundColor = `rgb(${Math.random() * 255} ${Math.random() * 255} ${Math.random() * 255})`;
+    currSquare.style.filter = `brightness(${brightness - 10}%)`;
+    brightness -= 10;
 }
 
 const generateGrid = (size = 16) => {
@@ -12,7 +15,7 @@ const generateGrid = (size = 16) => {
         square.classList.add("square");
         square.style.width = `${(960 / size) - 2}px`;
         square.style.height = `${(960 / size) - 2}px`;
-        square.addEventListener("dragenter", (e) => changeSquareColor(e));
+        square.addEventListener("mouseenter", (e) => changeSquareColor(e));
         container.appendChild(square);
     }
 }
